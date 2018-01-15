@@ -1,0 +1,25 @@
+<div class="row">
+	<div class="col-xs-12">
+		<form (ngSubmit)="onSubmit($event)">
+
+			<mat-form-field>
+				<input matInput type="text" [formControl]="username" placeholder="usuario" required>
+				<mat-error *ngIf="username.invalid">{{getErrorMessageForUsername()}}</mat-error>
+			</mat-form-field>
+
+			<mat-form-field>
+				<input matInput type="password" [formControl]="password" placeholder="contraseña" required>
+				<mat-error *ngIf="password.invalid">{{getErrorMessageForPassword()}}</mat-error>
+			</mat-form-field>
+
+
+			<div class="b-submit clearfix">
+			<button class="boton">Acceder</button>
+			</div>
+			<br/>
+
+			<div class="alerts alert alert-danger" *ngIf="status=='error'">No te has podido identificar correctamente</div>
+
+		</form>
+	</div>
+</div>
