@@ -27,10 +27,10 @@ export class BookmarksComponent implements OnInit {
 
   constructor(public bookmarksService:BookmarksService) { }
 
-  openBookmarkUrl(bookmark:Bookmark,event:Event){
+  openBookmarkUrl(bookmark:bookmarks,event:Event){
 
   	event.preventDefault();
-  	
+
   	window.location.href=bookmark.url;
 
   }
