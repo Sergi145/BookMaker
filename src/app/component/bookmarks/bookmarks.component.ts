@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild} from '@angular/core';
 import {BookmarksService} from '../../services/bookmarks.service';
 import {bookmarks} from '../../models/bookmarks.model';
 import {BookmarksResponse} from '../../models/bookmarks-response.model';
-import {MatTableDataSource} from '@angular/material';
+import {MatPaginator,MatTableDataSource,MatSort} from '@angular/material';
 
 
 @Component({
@@ -14,8 +14,10 @@ export class BookmarksComponent implements OnInit {
 
 	public bookmarks:Array<bookmarks>;
 
-	 displayedColumns = ['id', 'title', 'description', 'created'];
+	 displayedColumns = ['id', 'title', 'description', 'created','actions'];
   	dataSource;
+  	@ViewChild(MatPaginator) paginator:MatPaginator;//paginacion
+  	@ViewChild(MatSort) sort:MatSort;
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace
@@ -25,6 +27,14 @@ export class BookmarksComponent implements OnInit {
 
   constructor(public bookmarksService:BookmarksService) { }
 
+  openBookmarkUrl(bookmark:Bookmark,event:Event){
+
+  	event.preventDefault();
+  	
+  	window.location.href=bookmark.url;
+
+  }
+
   ngOnInit() {
 
   	this.bookmarksService.getAll().subscribe(
@@ -32,6 +42,8 @@ export class BookmarksComponent implements OnInit {
 
   			this.bookmarks=data.bookmarks;
   			this.dataSource= new MatTableDataSource<bookmarks>(this.bookmarks);
+  			this.dataSource.paginator=this.paginator;//paginacion
+  			this.dataSource.sort=this.sort;
 
   		},
   		error=>{

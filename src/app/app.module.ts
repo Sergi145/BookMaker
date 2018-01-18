@@ -16,13 +16,11 @@ import {PublicGuard} from './guards/public.guard';
 import {PrivateGuard} from './guards/private.guard';
 import {AuthenticationService} from './services/authentication.service';
 import {Ng2Webstorage} from 'ngx-webstorage';
-import {MatInputModule} from '@angular/material';
+import {MatInputModule,MatPaginatorModule,MatSortModule,MatMenuModule,MatIconModule} from '@angular/material';
 import {TokenService} from './services/interceptors/token.service';
 import { BookmarksComponent } from './component/bookmarks/bookmarks.component';
 import {BookmarksService} from './services/bookmarks.service';
 import {MatTableModule} from '@angular/material/table';
-
-
 
 
 
@@ -45,7 +43,11 @@ import {MatTableModule} from '@angular/material/table';
     MatFormFieldModule,
     FormsModule,
     MatTableModule,
+    MatSortModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
+    MatMenuModule,
+    MatIconModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
     Ng2Webstorage,
