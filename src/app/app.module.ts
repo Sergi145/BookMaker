@@ -16,11 +16,12 @@ import {PublicGuard} from './guards/public.guard';
 import {PrivateGuard} from './guards/private.guard';
 import {AuthenticationService} from './services/authentication.service';
 import {Ng2Webstorage} from 'ngx-webstorage';
-import {MatInputModule,MatPaginatorModule,MatSortModule,MatMenuModule,MatIconModule} from '@angular/material';
+import {MatInputModule,MatPaginatorModule,MatSortModule,MatMenuModule,MatIconModule,MatDialogModule} from '@angular/material';
 import {TokenService} from './services/interceptors/token.service';
 import { BookmarksComponent } from './component/bookmarks/bookmarks.component';
 import {BookmarksService} from './services/bookmarks.service';
 import {MatTableModule} from '@angular/material/table';
+import { EditBookmarkComponent } from './component/edit-bookmark/edit-bookmark.component';
 
 
 
@@ -32,8 +33,13 @@ import {MatTableModule} from '@angular/material/table';
     LoginComponent,
     NotFoundComponent,
     HomeComponent,
-    BookmarksComponent    
+    BookmarksComponent,
+    EditBookmarkComponent    
 
+  ],
+  entryComponents:[
+
+    EditBookmarkComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +55,7 @@ import {MatTableModule} from '@angular/material/table';
     MatMenuModule,
     MatIconModule,
     HttpClientModule,
+    MatDialogModule,
     RouterModule.forRoot(routes),
     Ng2Webstorage,
     MatInputModule,

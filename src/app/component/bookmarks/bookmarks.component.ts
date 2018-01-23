@@ -1,8 +1,9 @@
 import { Component, OnInit,ViewChild} from '@angular/core';
 import {BookmarksService} from '../../services/bookmarks.service';
+import {EditBookmarkComponent} from '../edit-bookmark/edit-bookmark.component';
 import {bookmarks} from '../../models/bookmarks.model';
 import {BookmarksResponse} from '../../models/bookmarks-response.model';
-import {MatPaginator,MatTableDataSource,MatSort} from '@angular/material';
+import {MatPaginator,MatTableDataSource,MatSort,MatDialog} from '@angular/material';
 
 
 @Component({
@@ -25,13 +26,39 @@ export class BookmarksComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
 
-  constructor(public bookmarksService:BookmarksService) { }
+  constructor(public bookmarksService:BookmarksService,public dialog:MatDialog) { }
 
   openBookmarkUrl(bookmark:bookmarks,event:Event){
 
   	event.preventDefault();
 
   	window.location.href=bookmark.url;
+
+  }
+
+    editBookmark(bookmark:bookmarks,event:Event){
+
+  
+    	this.openDialogToEditBookmark(bookmark);
+  	
+
+  }
+
+  openDialogToEditBookmark(bookmark:bookmarks){
+
+  	const dialogRef=this.dialog.open(EditBookmarkComponent,{
+
+  		data:bookmark,
+  		height:'400px',
+  		width:'600px'
+
+  	});
+
+  	dialogRef.afterClosed().subscribe(result=>{
+
+  		console.log(result);
+
+  	})
 
   }
 
